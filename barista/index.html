@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+  <title>deepstreamHub</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/2.1.1/deepstream.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    ul {
+      padding: 0;
+    }
+    .order_progress {
+      margin: 20px 0;
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      width: 100%;
+      display: inline-block;
+      position: relative;
+      height: 100px;
+    }
+  .order_type {
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid #eee;
+    padding-right: 25px;
+  }
+  .order_type img {
+    height: 75%;
+  }
+  .order_progress_bar {
+    display: inline-block;
+    width: calc(100% - 100px);
+  }
+  .order_progress_bar li {
+      list-style-type: none;
+      width: 25%;
+      float: left;
+      font-size: 12px;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      color: #7d7d7d;
+  }
+  .order_progress_bar li:before {
+      width: 50px;
+      height: 50px;
+      content: '✘';
+      top: 5px;
+      font-size: 20px;
+      line-height: 50px;
+      border: 2px solid #7d7d7d;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      background-color: white;
+  }
+  .order_progress_bar li:after {
+      transition: width 1s;
+      width: 0%;
+      height: 2px;
+      content: '';
+      position: absolute;
+      background-color: #7d7d7d;
+      top: 25px;
+      left: -50%;
+      z-index: -1;
+  }
+  .order_progress_bar li:first-child:after {
+      content: none;
+  }
+  .order_progress_bar li.active {
+      color: green;
+  }
+  .order_progress_bar li.active:before {
+      content: '✔';
+      border-color: #55b776;
+  }
+  .order_progress_bar li.active + li:after {
+      width: 100%;
+      background-color: #55b776;
+  }
+  .order_progress_bar li:not(.active):before {
+      cursor: pointer;
+  }
+  </style>
+
+  <div id="app">
+    <div v-cloak>
+      <ul>
+        <order-item inline-template v-for="order in orders" v-bind:order="order">
+          <li v-bind:class="[stage]" class="order_progress">
+            <div class="order_type">
+              <img class="order-image" v-bind:src="imageUrl">
+              <div>{{type}}</div>
+            </div>
+            <ul class="order_progress_bar">
+              <li v-on:click="transition('recieved')" class="order_status_transition active">
+                Recieved
+              </li>
+              <li v-on:click="transition('in-progress')" v-bind:class="{ active: currentState > 0 }" class="order_status_transition">
+                In Progress
+              </li>
+              <li v-on:click="transition('ready')" v-bind:class="{ active: currentState > 1 }" class="order_status_transition">
+                Ready
+              </li>
+              <li v-on:click="transition('delivered')" v-bind:class="{ active: currentState > 2 }" class="order_status_transition">
+                Delivered
+              </li>
+            </ul>
+          </li>
+        </order-item>
+      </ul>
+    </div>
+  </div>
+
+  <script src="application.js"></script>
+</head>
