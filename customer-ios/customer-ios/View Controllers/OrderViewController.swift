@@ -90,31 +90,35 @@ class OrderViewController: UIViewController {
         self.record = record
         
         // Subscribe to changes
-        let _ = self.record?.subscribe("stage", recordPathChangedCallback: OrderRecordPathChangedCallback(callback: { (data) in
-                if let stage = OrderViewController.orderStage(rawValue: data.getAsString()!) {
-                    switch (stage) {
-                    case .received:
-                        self.receivedLabel.textColor = greenColor
-                        self.inProgressLabel.textColor = .lightGray
-                        self.readyLabel.textColor = .lightGray
-                        self.deliveredLabel.textColor = .lightGray
-                    case .inProgress:
-                        self.receivedLabel.textColor = .lightGray
-                        self.inProgressLabel.textColor = greenColor
-                        self.readyLabel.textColor = .lightGray
-                        self.deliveredLabel.textColor = .lightGray
-                    case .ready:
-                        self.receivedLabel.textColor = .lightGray
-                        self.inProgressLabel.textColor = .lightGray
-                        self.readyLabel.textColor = greenColor
-                        self.deliveredLabel.textColor = .lightGray
-                    case .delivered:
-                        self.receivedLabel.textColor = .lightGray
-                        self.inProgressLabel.textColor = .lightGray
-                        self.readyLabel.textColor = .lightGray
-                        self.deliveredLabel.textColor = greenColor
-                        
-                        let _ = self.navigationController?.popToRootViewController(animated: true)
+        let _ = self.record?.subscribe("stage",
+                                       recordPathChangedCallback: OrderRecordPathChangedCallback(callback: { (data) in
+                
+                DispatchQueue.main.async {
+                    if let stage = OrderViewController.orderStage(rawValue: data.getAsString()!) {
+                        switch (stage) {
+                        case .received:
+                            self.receivedLabel.textColor = greenColor
+                            self.inProgressLabel.textColor = .lightGray
+                            self.readyLabel.textColor = .lightGray
+                            self.deliveredLabel.textColor = .lightGray
+                        case .inProgress:
+                            self.receivedLabel.textColor = .lightGray
+                            self.inProgressLabel.textColor = greenColor
+                            self.readyLabel.textColor = .lightGray
+                            self.deliveredLabel.textColor = .lightGray
+                        case .ready:
+                            self.receivedLabel.textColor = .lightGray
+                            self.inProgressLabel.textColor = .lightGray
+                            self.readyLabel.textColor = greenColor
+                            self.deliveredLabel.textColor = .lightGray
+                        case .delivered:
+                            self.receivedLabel.textColor = .lightGray
+                            self.inProgressLabel.textColor = .lightGray
+                            self.readyLabel.textColor = .lightGray
+                            self.deliveredLabel.textColor = greenColor
+                            
+                            let _ = self.navigationController?.popToRootViewController(animated: true)
+                        }
                     }
                 }
             })
