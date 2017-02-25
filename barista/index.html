@@ -98,7 +98,7 @@
               <div>{{type}}</div>
             </div>
             <ul class="order_progress_bar">
-              <li v-on:click="transition('recieved')" class="order_status_transition active">
+              <li v-on:click="transition('received')" class="order_status_transition active">
                 Recieved
               </li>
               <li v-on:click="transition('in-progress')" v-bind:class="{ active: currentState > 0 }" class="order_status_transition">
