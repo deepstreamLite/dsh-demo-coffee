@@ -7,7 +7,7 @@ Vue.component('order-item', {
         type: '',
         stage: '',
         imageUrl: '',
-        states: ['recieved', 'in-progress', 'ready', 'delivered'],
+        states: ['received', 'in-progress', 'ready', 'delivered'],
         currentState: 0
     }
     return this.data
