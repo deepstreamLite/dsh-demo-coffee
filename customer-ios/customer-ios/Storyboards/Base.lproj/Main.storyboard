@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-345" y="-609"/>
         </scene>
-        <!--Order-->
+        <!--Order Progress-->
         <scene sceneID="ABp-Y6-nH1">
             <objects>
-                <viewController storyboardIdentifier="OrderViewController" title="Order" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OE5-Ye-vHZ" customClass="OrderViewController" customModule="customer_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderViewController" title="Order Progress" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OE5-Ye-vHZ" customClass="OrderViewController" customModule="customer_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ggy-59-BR4"/>
                         <viewControllerLayoutGuide type="bottom" id="MkU-na-Zeg"/>
@@ -72,8 +72,71 @@
                     <view key="view" contentMode="scaleToFill" id="QJ7-B5-ViO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-TZ-TfR">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p43-wt-FdF">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="151"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECEIVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSh-jo-OoA">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="151"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <color key="textColor" red="0.31764705882352939" green="0.72156862745098038" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KoG-Bc-HZM">
+                                        <rect key="frame" x="0.0" y="151" width="343" height="150.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IN PROGRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PX-X8-5tc">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="150.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSp-tY-oVF">
+                                        <rect key="frame" x="0.0" y="301.5" width="343" height="151"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="READY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F6-WF-EQ0">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="151"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-2x-qi4">
+                                        <rect key="frame" x="0.0" y="452.5" width="343" height="150.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELIVERED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Hd-oV9">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="150.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MkU-na-Zeg" firstAttribute="top" secondItem="ngi-TZ-TfR" secondAttribute="bottom" id="9ze-e4-mtq"/>
+                            <constraint firstItem="ngi-TZ-TfR" firstAttribute="leading" secondItem="QJ7-B5-ViO" secondAttribute="leadingMargin" id="PxF-Sw-nn4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ngi-TZ-TfR" secondAttribute="trailing" id="Xfy-mL-rsA"/>
+                            <constraint firstItem="ngi-TZ-TfR" firstAttribute="top" secondItem="ggy-59-BR4" secondAttribute="bottom" id="vVi-en-h20"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="deliveredLabel" destination="L48-Hd-oV9" id="Yuu-Su-xRD"/>
+                        <outlet property="inProgressLabel" destination="2PX-X8-5tc" id="ufR-jV-n0W"/>
+                        <outlet property="readyLabel" destination="9F6-WF-EQ0" id="GDp-aQ-pqC"/>
+                        <outlet property="receivedLabel" destination="NSh-jo-OoA" id="ulC-ij-BD5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVv-2n-Oel" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
