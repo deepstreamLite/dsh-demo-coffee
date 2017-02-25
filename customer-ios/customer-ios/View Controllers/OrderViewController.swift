@@ -27,6 +27,7 @@ let greenColor = UIColor(colorLiteralRed: 81/255, green: 184/255, blue: 115/255,
 
 class OrderViewController: UIViewController {
     
+    // UI Labels
     @IBOutlet weak var receivedLabel: UILabel! {
         didSet {
             self.receivedLabel.textColor = greenColor
@@ -36,6 +37,13 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var inProgressLabel: UILabel!
     @IBOutlet weak var readyLabel: UILabel!
     @IBOutlet weak var deliveredLabel: UILabel!
+    
+    // State icons
+    @IBOutlet weak var receivedIcon: UILabel!
+    @IBOutlet weak var inProgressIcon: UILabel!
+    @IBOutlet weak var readyIcon: UILabel!
+    @IBOutlet weak var deliveredIcon: UILabel!
+    
     
     var menuItem : String?
     
@@ -93,29 +101,51 @@ class OrderViewController: UIViewController {
         let _ = self.record?.subscribe("stage",
                                        recordPathChangedCallback: OrderRecordPathChangedCallback(callback: { (data) in
                 
+                // Update the progress UI
                 DispatchQueue.main.async {
                     if let stage = OrderViewController.orderStage(rawValue: data.getAsString()!) {
                         switch (stage) {
                         case .received:
-                            self.receivedLabel.textColor = greenColor
-                            self.inProgressLabel.textColor = .lightGray
-                            self.readyLabel.textColor = .lightGray
-                            self.deliveredLabel.textColor = .lightGray
+                            self.receivedLabel.fadeToColor(greenColor)
+                            self.inProgressLabel.fadeToColor(.lightGray)
+                            self.readyLabel.fadeToColor(.lightGray)
+                            self.deliveredLabel.fadeToColor(.lightGray)
+                            
+                            self.receivedIcon.fadeToCheckMark()
+                            self.inProgressIcon.fadeToCross()
+                            self.readyIcon.fadeToCross()
+                            self.deliveredIcon.fadeToCross()
+                            
                         case .inProgress:
-                            self.receivedLabel.textColor = .lightGray
-                            self.inProgressLabel.textColor = greenColor
-                            self.readyLabel.textColor = .lightGray
-                            self.deliveredLabel.textColor = .lightGray
+                            self.receivedLabel.fadeToColor(greenColor)
+                            self.inProgressLabel.fadeToColor(greenColor)
+                            self.readyLabel.fadeToColor(.lightGray)
+                            self.deliveredLabel.fadeToColor(.lightGray)
+                            
+                            self.receivedIcon.fadeToCheckMark()
+                            self.inProgressIcon.fadeToCheckMark()
+                            self.readyIcon.fadeToCross()
+                            self.deliveredIcon.fadeToCross()
                         case .ready:
-                            self.receivedLabel.textColor = .lightGray
-                            self.inProgressLabel.textColor = .lightGray
-                            self.readyLabel.textColor = greenColor
-                            self.deliveredLabel.textColor = .lightGray
+                            self.receivedLabel.fadeToColor(greenColor)
+                            self.inProgressLabel.fadeToColor(greenColor)
+                            self.readyLabel.fadeToColor(greenColor)
+                            self.deliveredLabel.fadeToColor(.lightGray)
+                            
+                            self.receivedIcon.fadeToCheckMark()
+                            self.inProgressIcon.fadeToCheckMark()
+                            self.readyIcon.fadeToCheckMark()
+                            self.deliveredIcon.fadeToCross()
                         case .delivered:
-                            self.receivedLabel.textColor = .lightGray
-                            self.inProgressLabel.textColor = .lightGray
-                            self.readyLabel.textColor = .lightGray
-                            self.deliveredLabel.textColor = greenColor
+                            self.receivedLabel.fadeToColor(greenColor)
+                            self.inProgressLabel.fadeToColor(greenColor)
+                            self.readyLabel.fadeToColor(greenColor)
+                            self.deliveredLabel.fadeToColor(greenColor)
+                            
+                            self.receivedIcon.fadeToCheckMark()
+                            self.inProgressIcon.fadeToCheckMark()
+                            self.readyIcon.fadeToCheckMark()
+                            self.deliveredIcon.fadeToCheckMark()
                             
                             let _ = self.navigationController?.popToRootViewController(animated: true)
                         }
@@ -145,5 +175,39 @@ class OrderViewController: UIViewController {
     }
 }
 
+extension UILabel {
+    func fadeToColor(_ color: UIColor) {
+        UIView.transition(with: self,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: { self.textColor = color },
+                          completion: nil)
+    }
+    
+    func fadeText(_ text: String) {
+        self.fadeTransition(0.4)
+        self.text = text
+    }
+    
+    func fadeToCheckMark() {
+        self.fadeText("✓")
+        self.fadeToColor(greenColor)
+    }
+    
+    func fadeToCross() {
+        self.fadeText("✕")
+        self.fadeToColor(.lightGray)
+    }
+}
 
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionFade
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransitionFade)
+    }
+}
 
