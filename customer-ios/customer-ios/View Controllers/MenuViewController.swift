@@ -56,7 +56,7 @@ extension MenuViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return 70.0
     }
     
     func tableView( _ tableView: UITableView, heightForHeaderInSection section: Int ) -> CGFloat {
