@@ -1,0 +1,9 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'customer-ios' do
+  use_frameworks!
+
+  pod 'DeepstreamIO', '~> 2.0.0'
+
+end
