@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F26AAE5A690325B934186965 /* Pods_customer_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABE842A2669E7F80A3D3258 /* Pods_customer_ios.framework */; };
+		FA20E8651E619A6000AA4A33 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20E8641E619A6000AA4A33 /* OrderViewController.swift */; };
 		FA6D82101E61985000BD93C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D820F1E61985000BD93C4 /* AppDelegate.swift */; };
-		FA6D82121E61985000BD93C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D82111E61985000BD93C4 /* ViewController.swift */; };
+		FA6D82121E61985000BD93C4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D82111E61985000BD93C4 /* MenuViewController.swift */; };
 		FA6D82151E61985000BD93C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6D82131E61985000BD93C4 /* Main.storyboard */; };
 		FA6D82171E61985000BD93C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6D82161E61985000BD93C4 /* Assets.xcassets */; };
 		FA6D821A1E61985000BD93C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6D82181E61985000BD93C4 /* LaunchScreen.storyboard */; };
@@ -19,9 +20,11 @@
 		3ABE842A2669E7F80A3D3258 /* Pods_customer_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_customer_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD60E2970F9B29A6C86F4BC8 /* Pods-customer-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-customer-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-customer-ios/Pods-customer-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F5D7F21A940F72BD0E66519D /* Pods-customer-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-customer-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-customer-ios/Pods-customer-ios.release.xcconfig"; sourceTree = "<group>"; };
+		FA20E8631E61996D00AA4A33 /* customer-ios-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "customer-ios-bridging-header.h"; sourceTree = "<group>"; };
+		FA20E8641E619A6000AA4A33 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		FA6D820C1E61984F00BD93C4 /* customer-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "customer-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6D820F1E61985000BD93C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA6D82111E61985000BD93C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA6D82111E61985000BD93C4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		FA6D82141E61985000BD93C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA6D82161E61985000BD93C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA6D82191E61985000BD93C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +60,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA20E8601E61993600AA4A33 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D82131E61985000BD93C4 /* Main.storyboard */,
+				FA6D82181E61985000BD93C4 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		FA20E8611E61993D00AA4A33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D82161E61985000BD93C4 /* Assets.xcassets */,
+				FA6D821B1E61985000BD93C4 /* Info.plist */,
+				FA20E8631E61996D00AA4A33 /* customer-ios-bridging-header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA20E8621E61994500AA4A33 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D82111E61985000BD93C4 /* MenuViewController.swift */,
+				FA20E8641E619A6000AA4A33 /* OrderViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		FA6D82031E61984F00BD93C4 = {
 			isa = PBXGroup;
 			children = (
@@ -79,11 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				FA6D820F1E61985000BD93C4 /* AppDelegate.swift */,
-				FA6D82111E61985000BD93C4 /* ViewController.swift */,
-				FA6D82131E61985000BD93C4 /* Main.storyboard */,
-				FA6D82161E61985000BD93C4 /* Assets.xcassets */,
-				FA6D82181E61985000BD93C4 /* LaunchScreen.storyboard */,
-				FA6D821B1E61985000BD93C4 /* Info.plist */,
+				FA20E8621E61994500AA4A33 /* View Controllers */,
+				FA20E8601E61993600AA4A33 /* Storyboards */,
+				FA20E8611E61993D00AA4A33 /* Supporting Files */,
 			);
 			path = "customer-ios";
 			sourceTree = "<group>";
@@ -118,11 +147,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "deepstreamHub GmbH";
 				TargetAttributes = {
 					FA6D820B1E61984F00BD93C4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -210,8 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6D82121E61985000BD93C4 /* ViewController.swift in Sources */,
+				FA6D82121E61985000BD93C4 /* MenuViewController.swift in Sources */,
 				FA6D82101E61985000BD93C4 /* AppDelegate.swift in Sources */,
+				FA20E8651E619A6000AA4A33 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,8 +282,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -278,7 +311,9 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/customer-ios/customer-ios-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -297,8 +332,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -317,6 +354,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/customer-ios/customer-ios-bridging-header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -331,6 +371,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deepstreamHub.customer-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -343,6 +384,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deepstreamHub.customer-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -365,6 +407,7 @@
 				FA6D82201E61985000BD93C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
