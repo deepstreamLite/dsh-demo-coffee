@@ -18,6 +18,8 @@ let Menu = [
 
 class MenuViewController: UIViewController {
 
+    var selectedMenuItem : String?
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.delegate = self
@@ -29,6 +31,18 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showOrderViewController") {
+            
+            guard let vc = segue.destination as? OrderViewController else {
+                return
+            }
+            
+            // Pass selected menu item
+            vc.menuItem = self.selectedMenuItem
+        }
+    }
+    
 }
 
 extension MenuViewController : UITableViewDelegate {
@@ -36,6 +50,9 @@ extension MenuViewController : UITableViewDelegate {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
         let menuItem = Menu[indexPath.row]
+        self.selectedMenuItem = menuItem
+        
+        self.performSegue(withIdentifier: "showOrderViewController", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

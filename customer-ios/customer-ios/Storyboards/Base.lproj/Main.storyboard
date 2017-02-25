@@ -54,17 +54,17 @@
                     <navigationItem key="navigationItem" title="Menu" id="oeW-2l-0F4"/>
                     <connections>
                         <outlet property="tableView" destination="um1-hI-Aq9" id="CoC-C5-qJw"/>
-                        <segue destination="OE5-Ye-vHZ" kind="showDetail" id="Vec-cF-5BI"/>
+                        <segue destination="OE5-Ye-vHZ" kind="show" identifier="showOrderViewController" id="iv3-Wh-vfQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBo-4b-Aez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-345" y="-609"/>
         </scene>
-        <!--View Controller-->
+        <!--Order-->
         <scene sceneID="ABp-Y6-nH1">
             <objects>
-                <viewController storyboardIdentifier="OrderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OE5-Ye-vHZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderViewController" title="Order" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OE5-Ye-vHZ" customClass="OrderViewController" customModule="customer_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ggy-59-BR4"/>
                         <viewControllerLayoutGuide type="bottom" id="MkU-na-Zeg"/>
