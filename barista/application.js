@@ -1,4 +1,4 @@
-var client = deepstream('***REMOVED***')
+var client = deepstream('wss://xxx.deepstreamhub.com?apiKey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
 
 Vue.component('order-item', {
   props: ['order'],
