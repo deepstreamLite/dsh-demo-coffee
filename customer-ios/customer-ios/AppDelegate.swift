@@ -23,7 +23,7 @@ final class AppConnectionStateListener : NSObject, ConnectionStateListener {
 }
 
 // NOTE: REPLACE HOST
-let DeepstreamHubURL = "127.0.0.1:6020/deepstream"
+let DeepstreamHubURL = "wss://xxx.deepstreamhub.com?apiKey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

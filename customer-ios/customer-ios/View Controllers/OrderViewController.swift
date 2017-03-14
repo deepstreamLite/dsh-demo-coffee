@@ -49,7 +49,7 @@ class OrderViewController: UIViewController {
     
     private var client : DeepstreamClient?
     private var ordersList : List?
-    var record : Record?
+    var orderRecord : Record?
     
     enum orderStage : String {
         case received = "received"
@@ -90,15 +90,15 @@ class OrderViewController: UIViewController {
         }
 
         // Get record handler
-        guard let record = self.client?.record.getRecord("coffee/\(uuid)") else {
+        guard let orderRecord = self.client?.record.getRecord("coffee/\(uuid)") else {
             print("ERROR: Unable to get record")
             return
         }
         
-        self.record = record
+        self.orderRecord = orderRecord
         
         // Subscribe to changes
-        let _ = self.record?.subscribe("stage",
+        let _ = self.orderRecord?.subscribe("stage",
                                        recordPathChangedCallback: OrderRecordPathChangedCallback(callback: { (data) in
                 
                 // Update the progress UI
@@ -166,12 +166,12 @@ class OrderViewController: UIViewController {
             "stage" : orderStage.received.rawValue
         ]
         
-        guard let rec = self.record?.set(order.jsonElement) else {
+        guard let _ = self.orderRecord?.set(order.jsonElement) else {
             print("ERROR: Unable to set record")
             return
         }
         
-        let _ = self.ordersList?.addEntry(rec.name())
+        let _ = self.ordersList?.addEntry(orderRecord.name())
     }
 }
 
