@@ -17,7 +17,7 @@ Vue.component('order-item', {
     this.record.subscribe((data) => {
       Vue.set(this.data, 'currentState', this.states.indexOf(data.stage))
       Vue.set(this.data, 'type', data.type)
-      Vue.set(this.data, 'imageUrl', 'images/' + data.type + '.png')
+      Vue.set(this.data, 'imageUrl', 'images/' + data.type + '.jpg')
       Vue.set(this.data, 'stage', data.stage)
     })
   },
