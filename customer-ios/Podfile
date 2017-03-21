@@ -4,6 +4,6 @@
 target 'customer-ios' do
   use_frameworks!
 
-  pod 'DeepstreamIO', '~> 2.0.5'
+  pod 'DeepstreamIO', '~> 2.0.6'
 
 end
