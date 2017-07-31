@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OrderRecordPathChangedCallback : NSObject, RecordPathChangedCallback {
+final class OrderRecordPathChangedCallback : NSObject, DSRecordPathChangedCallback {
 
     private var callback : ((JsonElement) -> Void)!
 
@@ -47,9 +47,9 @@ class OrderViewController: UIViewController {
 
     var menuItem : String?
 
-    private var client : DeepstreamClient?
-    private var ordersList : List?
-    var orderRecord : Record?
+    private var client : DSDeepstreamClient?
+    private var ordersList : DSList?
+    var orderRecord : DSRecord?
 
     enum orderStage : String {
         case received = "received"
@@ -83,67 +83,21 @@ class OrderViewController: UIViewController {
 
             // Generate unique id for order
             let uuid = self.client!.getUid()
+            
             // Get record handler
             let orderRecord = self.client!.record.getRecord("coffee/\(uuid)")
             self.orderRecord = orderRecord
-
+            
             // Subscribe to changes
             self.orderRecord!.subscribe("stage",
                                         recordPathChangedCallback: OrderRecordPathChangedCallback(callback: { (data) in
-
-                    // Update the progress UI
-                    DispatchQueue.main.async {
-                        if let stage = OrderViewController.orderStage(rawValue: data.getAsString()!) {
-                            switch (stage) {
-                            case .received:
-                                self.receivedLabel.fadeToColor(greenColor)
-                                self.inProgressLabel.fadeToColor(.lightGray)
-                                self.readyLabel.fadeToColor(.lightGray)
-                                self.deliveredLabel.fadeToColor(.lightGray)
-
-                                self.receivedIcon.fadeToCheckMark()
-                                self.inProgressIcon.fadeToCross()
-                                self.readyIcon.fadeToCross()
-                                self.deliveredIcon.fadeToCross()
-
-                            case .inProgress:
-                                self.receivedLabel.fadeToColor(greenColor)
-                                self.inProgressLabel.fadeToColor(greenColor)
-                                self.readyLabel.fadeToColor(.lightGray)
-                                self.deliveredLabel.fadeToColor(.lightGray)
-
-                                self.receivedIcon.fadeToCheckMark()
-                                self.inProgressIcon.fadeToCheckMark()
-                                self.readyIcon.fadeToCross()
-                                self.deliveredIcon.fadeToCross()
-
-                            case .ready:
-                                self.receivedLabel.fadeToColor(greenColor)
-                                self.inProgressLabel.fadeToColor(greenColor)
-                                self.readyLabel.fadeToColor(greenColor)
-                                self.deliveredLabel.fadeToColor(.lightGray)
-
-                                self.receivedIcon.fadeToCheckMark()
-                                self.inProgressIcon.fadeToCheckMark()
-                                self.readyIcon.fadeToCheckMark()
-                                self.deliveredIcon.fadeToCross()
-
-                            case .delivered:
-                                self.receivedLabel.fadeToColor(greenColor)
-                                self.inProgressLabel.fadeToColor(greenColor)
-                                self.readyLabel.fadeToColor(greenColor)
-                                self.deliveredLabel.fadeToColor(greenColor)
-
-                                self.receivedIcon.fadeToCheckMark()
-                                self.inProgressIcon.fadeToCheckMark()
-                                self.readyIcon.fadeToCheckMark()
-                                self.deliveredIcon.fadeToCheckMark()
-
-                                self.navigationController!.popToRootViewController(animated: true)
-                            }
-                        }
-                    }
-                })
+                                            // Update the progress UI
+                                            DispatchQueue.main.async {
+                                                if let stage = OrderViewController.orderStage(rawValue: data.getAsString()!) {
+                                                    self.updateProgress(data: data, stage: stage)
+                                                }
+                                            }
+                                        })
             )
 
             guard let item = self.menuItem else {
@@ -162,6 +116,56 @@ class OrderViewController: UIViewController {
 
             self.ordersList!.addEntry(orderRecord!.name())
         })
+    }
+    
+    func updateProgress(data: JsonElement, stage: orderStage) {
+        switch (stage) {
+        case .received:
+            self.receivedLabel.fadeToColor(greenColor)
+            self.inProgressLabel.fadeToColor(.lightGray)
+            self.readyLabel.fadeToColor(.lightGray)
+            self.deliveredLabel.fadeToColor(.lightGray)
+            
+            self.receivedIcon.fadeToCheckMark()
+            self.inProgressIcon.fadeToCross()
+            self.readyIcon.fadeToCross()
+            self.deliveredIcon.fadeToCross()
+            
+        case .inProgress:
+            self.receivedLabel.fadeToColor(greenColor)
+            self.inProgressLabel.fadeToColor(greenColor)
+            self.readyLabel.fadeToColor(.lightGray)
+            self.deliveredLabel.fadeToColor(.lightGray)
+            
+            self.receivedIcon.fadeToCheckMark()
+            self.inProgressIcon.fadeToCheckMark()
+            self.readyIcon.fadeToCross()
+            self.deliveredIcon.fadeToCross()
+            
+        case .ready:
+            self.receivedLabel.fadeToColor(greenColor)
+            self.inProgressLabel.fadeToColor(greenColor)
+            self.readyLabel.fadeToColor(greenColor)
+            self.deliveredLabel.fadeToColor(.lightGray)
+            
+            self.receivedIcon.fadeToCheckMark()
+            self.inProgressIcon.fadeToCheckMark()
+            self.readyIcon.fadeToCheckMark()
+            self.deliveredIcon.fadeToCross()
+            
+        case .delivered:
+            self.receivedLabel.fadeToColor(greenColor)
+            self.inProgressLabel.fadeToColor(greenColor)
+            self.readyLabel.fadeToColor(greenColor)
+            self.deliveredLabel.fadeToColor(greenColor)
+            
+            self.receivedIcon.fadeToCheckMark()
+            self.inProgressIcon.fadeToCheckMark()
+            self.readyIcon.fadeToCheckMark()
+            self.deliveredIcon.fadeToCheckMark()
+            
+            self.navigationController!.popToRootViewController(animated: true)
+        }
     }
 }
 
@@ -191,7 +195,7 @@ extension UILabel {
 }
 
 extension UIView {
-    func fadeTransition(_ duration:CFTimeInterval) {
+    func fadeTransition(_ duration: CFTimeInterval) {
         let animation = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name:
             kCAMediaTimingFunctionEaseInEaseOut)

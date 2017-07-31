@@ -8,22 +8,22 @@
 
 import UIKit
 
-final class RuntimeErrorHandler : NSObject, DeepstreamRuntimeErrorHandler {
-    func onException(_ topic: Topic!, event: Event!, errorMessage: String!) {
+final class RuntimeErrorHandler : NSObject, DSDeepstreamRuntimeErrorHandler {
+    func onException(_ topic: DSTopic!, event: DSEvent!, errorMessage: String!) {
         if (errorMessage != nil && topic != nil && event != nil) {
             print("Error: \(errorMessage!) for topic: \(topic!), event: \(event!)")
         }
     }
 }
 
-final class AppConnectionStateListener : NSObject, ConnectionStateListener {
-    func connectionStateChanged(_ connectionState: ConnectionState!) {
+final class AppConnectionStateListener : NSObject, DSConnectionStateListener {
+    func connectionStateChanged(_ connectionState: DSConnectionState!) {
         print("Connection state changed \(connectionState!)")
     }
 }
 
 // NOTE: REPLACE HOST
-let DeepstreamHubURL = "wss://xxx.deepstreamhub.com?apiKey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+let DeepstreamHubURL = "wss://154.deepstreamhub.com/?apiKey=0a599327-0f5d-4a05-b5a5-98188083e909"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
